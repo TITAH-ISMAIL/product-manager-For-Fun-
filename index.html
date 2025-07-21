@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body class="bg-slate-950">
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+
+<div id="app" class="p-2 text-white flex flex-col">
+  <!-- add and edit and delete product to storage -->
+  <div id="tab2" class="create hidden tab-panel">
+    <h1 class="text-lg font-bold my-1">New Product</h1>
+  
+    <div class="inputs flex flex-col gap-2">
+      <input
+        id="nameInput"
+        type="text"
+        class="bg-slate-900 py-2 px-3 rounded-sm outline-none border-slate-800 border-1"
+        placeholder="Enter Name"
+      />
+      <input
+        id="priceInput"
+        type="number"
+        class="bg-slate-900 py-2 px-3 rounded-sm outline-none border-slate-800 border-1"
+        placeholder="Enter Price"
+      />
+      <input
+        id="barcodeInput"
+        type="number"
+        class="bg-slate-900 py-2 px-3 rounded-sm outline-none border-slate-800 border-1"
+        placeholder="Enter Barcode"
+      />
+      <button
+        id="mainBtn"
+        class="bg-blue-600 py-3 rounded-sm font-semibold hover:bg-blue-500 transition-all cursor-pointer"
+      >
+        Submit
+      </button>
+    </div>
+    <!-- mytable -->
+    <div class="w-full mt-3 my-2 h-[44vh] overflow-scroll flow-root">
+      <div class="tabelHeade grid grid-cols-12 mb-1">
+        <p class="px-2 py-1 bg-slate-700 border-r-1 col-span-1">/</p>
+        <p class="px-2 py-1 bg-slate-700 border-r-1 col-span-3">Name</p>
+        <p class="px-2 py-1 bg-slate-700 border-r-1 col-span-2">Price</p>
+        <p class="px-2 py-1 bg-slate-700 border-r-1 col-span-3">BarCode</p>
+        <p class="px-2 py-1 bg-slate-700 col-span-3">DE/ED</p>
+      </div>
+      <div id="tableBody">
+  
+      </div>
+    </div>
+  </div>
+  <!-- calcualte products and  -->
+  <div id="tab1" class="calculate flex flex-col tab-panel">
+  
+    <div class="field grid grid-cols-5 gap-1">
+      <div class="relative col-span-4">
+        <input
+        id="searchInput"
+        type="text"
+        class="bg-slate-900 py-2 px-3 rounded-sm outline-none border-slate-800 border-1 w-full"
+        placeholder="Search or Add Other"
+        onkeyup="search()"
+        />
+        <ul id="sug-list"
+  class="absolute z-50 w-full bg-slate-800 shadow-lg mt-1 px-2 py-2 flex flex-col gap-1 rounded-md max-h-40 overflow-y-auto hidden">
+</ul>
+
+      </div>
+      <button id="addToCalc" class="bg-blue-600 hover:bg-blue-500 px-2 py-2 rounded-sm col-span-1 cursor-pointer" onclick="addToFacture()">Add</button>
+    </div>
+    
+    <div class="w-full mt-5 my-2 h-[56vh] overflow-scroll flow-root">
+      <div class="tabelHeade grid grid-cols-16 mb-1">
+        <p class="px-2 py-1 bg-slate-700 border-r-1 col-span-1">/</p>
+        <p class="px-2 py-1 bg-slate-700 border-r-1 col-span-5">Name</p>
+        <p class="px-2 py-1 bg-slate-700 border-r-1 col-span-3">Price</p>
+        <p class="px-2 py-1 bg-slate-700 border-r-1 col-span-3">Count</p>
+        <p class="px-2 py-1 bg-slate-700 col-span-4">Action</p>
+      </div>
+      <div id="factureBody">
+        
+      </div>
+    </div>
+    <div class="flex gap-3 text-3xl justify-center font-semibold bg-green-600 py-2 rounded-sm">
+      <p>Total:</p>
+      <p id="total">0 DZD</p>
+    </div>
+    <button id="save" class="bg-blue-600 my-2 py-2 rounded-sm hover:bg-blue-500 cursor-pointer transition-colors">Save & Print</button>
+  </div>
+  <!-- menu tabs -->
+      <div class="flex mt-3 rounded-full overflow-hidden">
+        <button class="tab-button flex-1 py-3 text-center hover:bg-slate-800 focus:outline-none hover:text-blue-300 hover:font-semibold border-blue-300 text-blue-300 font-semibold bg-slate-800 cursor-pointer transition-all" data-tab="tab1">
+          <span class="flex justify-center gap-2"><span>💲</span>Facture</span>
+        </button>
+        <button class="tab-button flex-1 py-3 text-center hover:bg-slate-800 focus:outline-none hover:text-blue-300 hover:font-semibold cursor-pointer transition-all" data-tab="tab2">
+          <span class="flex justify-center gap-2"><span>➕</span>Add</span>
+        </button>
+        <button class="tab-button flex-1 py-3 text-center hover:bg-slate-800 focus:outline-none hover:text-blue-300 hover:font-semibold cursor-pointer transition-all" data-tab="tab3">
+          تبويب 3
+        </button>
+      </div>
+
+
+    <script src="src/tailwind.js"></script>
+    <script src="src/html5-qrcode.js" ></script>
+    <script src="src/main.js"></script>
+  </body>
+</html>
